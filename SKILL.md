@@ -48,18 +48,33 @@ If the user names a preset, apply it instead of PERSONALITY AND SOUL. All anti-p
 
 **Scope: English (en).** The rules below derive from convergent guidance across the Google developer documentation style guide, Microsoft Writing Style Guide, Apple Style Guide, IBM Style Guide, GOV.UK Content Design Guide, GitLab Documentation Style Guide, Plain Language Action and Information Network guidelines, and the Chicago Manual of Style. They do not apply to German, French, Spanish, or other languages where formal-writing conventions differ significantly (e.g., German tolerates passive voice and nominalised constructions that English style guides reject). For non-English text, request a language-specific preset (none ship yet) or fall back to the default voice with explicit language instruction.
 
-Register-specific rules (in addition to the numbered patterns §1 through §30):
+Register-specific rules (in addition to the numbered patterns §1 through §30). Each rule cites the style guide(s) it was drawn from; bracket codes resolve to URLs in the Sources block below.
 
-- **Active voice as default.** "The button can be clicked" → "Click the button." Passive is acceptable only when the agent is genuinely unknown or irrelevant.
-- **Present tense.** "The function will return..." → "The function returns..." Future tense ("will") is reserved for genuinely future events, not for describing current behaviour.
-- **No filler intensifiers.** Drop "simply", "easily", "just", "straightforward", "merely". They imply triviality, add no information, and are explicitly banned by Google and Red Hat style guides.
-- **No "utilize" / "leverage" / "facilitate".** Use "use", or name the specific action. "We leverage X" → "X does Y." Banned by Microsoft and GitLab style guides.
-- **No vague behavioural verbs in specifications.** "ensures", "supports", "enables", "provides", "handles" hide the mechanism. Replace with the actual operation and its failure mode. "The service ensures consistency" → "The service uses two-phase commit; writes are rejected if quorum is not reached."
-- **No hedge-stacked modal predictions.** "could potentially enable" / "may help to facilitate" assert nothing. Either commit to a claim or omit it. A single modal or single hedge is fine; stacking them is the tell.
-- **No nominalised verbs.** "perform a restart" → "restart". "make a decision about" → "decide". "give consideration to" → "consider".
-- **No Latin abbreviations in body prose.** "e.g." → "for example", "i.e." → "that is", "etc." → name the missing items or drop them. (Acceptable inside parenthetical asides and citations.)
-- **One idea per sentence.** Two clauses joined by "and" are usually two sentences. Mailchimp's rule of thumb.
-- **No promotional adjectives without measurable backing.** "robust", "comprehensive", "powerful", "seamless", "scalable", "elegant" require either a cited metric or omission. "A scalable system" → "Tested at 10,000 requests per second" or just remove the adjective.
+- **Active voice as default.** "The button can be clicked" → "Click the button." Passive is acceptable only when the agent is genuinely unknown or irrelevant. *(Convergent across [G], [MS], [Apple], [IBM], [GOV], [GL], [PL], [CMS], [MC].)*
+- **Present tense.** "The function will return..." → "The function returns..." Future tense ("will") is reserved for genuinely future events, not for describing current behaviour. *([G], [IBM].)*
+- **No filler intensifiers.** Drop "simply", "easily", "just", "straightforward", "merely". They imply triviality and add no information. *([G], [RH].)*
+- **No "utilize" / "leverage" / "facilitate".** Use "use", or name the specific action. "We leverage X" → "X does Y." *([MS], [GL].)*
+- **No vague behavioural verbs in specifications.** "ensures", "supports", "enables", "provides", "handles" hide the mechanism. Replace with the actual operation and its failure mode. "The service ensures consistency" → "The service uses two-phase commit; writes are rejected if quorum is not reached." *([BB].)*
+- **No hedge-stacked modal predictions.** "could potentially enable" / "may help to facilitate" assert nothing. Either commit to a claim or omit it. A single modal or single hedge is fine; stacking them is the tell. *([CB].)*
+- **No nominalised verbs.** "perform a restart" → "restart". "make a decision about" → "decide". "give consideration to" → "consider". *([Apple].)*
+- **No Latin abbreviations in body prose.** "e.g." → "for example", "i.e." → "that is", "etc." → name the missing items or drop them. (Acceptable inside parenthetical asides and citations.) *([GOV], [GL].)*
+- **One idea per sentence.** Two clauses joined by "and" are usually two sentences. *([MC], [PL].)*
+- **No promotional adjectives without measurable backing.** "robust", "comprehensive", "powerful", "seamless", "scalable", "elegant" require either a cited metric or omission. "A scalable system" → "Tested at 10,000 requests per second" or just remove the adjective. *(Convergent consensus across style guides; no single source bans these by name. Documented as recurring AI tell in [BB] and [CB].)*
+
+**Sources:**
+
+- [G] [Google Developer Documentation Style Guide](https://developers.google.com/style)
+- [MS] [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
+- [Apple] [Apple Style Guide](https://support.apple.com/guide/applestyleguide/welcome/web)
+- [IBM] [IBM Style (public mirror)](https://stylepedia.net/style/)
+- [GOV] [GOV.UK Content Design Guide](https://www.gov.uk/guidance/content-design)
+- [GL] [GitLab Documentation Style Guide](https://docs.gitlab.com/development/documentation/styleguide/)
+- [PL] [Federal Plain Language Guidelines (plainlanguage.gov)](https://plainlanguage.gov/guidelines/)
+- [CMS] [Chicago Manual of Style](https://www.chicagomanualofstyle.org/)
+- [MC] [Mailchimp Content Style Guide](https://styleguide.mailchimp.com/)
+- [RH] [Red Hat Supplementary Style Guide](https://redhat-documentation.github.io/supplementary-style-guide/)
+- [BB] [AI-Written Specifications: When the Documentation Looks Great but It's Wrong (Byborg Engineering, Medium)](https://medium.com/byborg-engineering/ai-written-specifications-when-the-documentation-looks-great-but-its-wrong-a0ae0c689480)
+- [CB] [conorbronsdon/avoid-ai-writing SKILL.md](https://github.com/conorbronsdon/avoid-ai-writing/blob/main/SKILL.md)
 
 > **Example transformation (neutral preset):**
 >
