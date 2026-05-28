@@ -29,13 +29,41 @@ How you're invoked changes what you deliver (see Invocation Modes). The draft โ
 
 ## Voice Calibration
 
-If the user provides a writing sample (their own previous writing), analyze it before rewriting:
+By default, the rewrite uses the voice in the PERSONALITY AND SOUL section below (natural, varied, opinionated). For writing where that voice would be wrong (technical docs, reference text, academic prose) or for matching a known author, the user can override the default in two ways: provide a sample, or request a named preset.
+
+### Option A: Writing sample
+
+If the user supplies a sample of their own previous writing, analyze it before rewriting:
 
 1. Read the sample first. Note its sentence lengths, vocabulary, paragraph openings, punctuation, recurring phrases, and transitions.
 2. Match those habits instead of merely deleting AI patterns. Do not upgrade casual words or regularize deliberate quirks.
-3. Without a sample, use the default behavior below.
 
 A sample outranks this skill's style rules, including the em dash rule in ยง14: if the sample uses em dashes, keep them at roughly the sample's frequency. Matching the author beats scrubbing the tell.
+
+### Option B: Named voice preset
+
+If the user names a preset, apply it instead of PERSONALITY AND SOUL. All anti-pattern rules in the rest of this skill still apply; the preset only shifts register and voice.
+
+**`neutral professional`**: third-person, factual, no first-person, no folksy asides or one-word sentences for effect. Sentence length still varied, but rhythm is even rather than punchy. Suits technical READMEs, API documentation, RFCs, project descriptions, internal write-ups, vendor-facing prose. Do not inject opinions or mixed feelings. Keep claims sourced or hedged honestly, never both ("studies show" without a study is still an AI tell).
+
+> **Example transformation (neutral preset):**
+>
+> AI default (PERSONALITY AND SOUL): "I looked around in May 2026 and didn't find anything quite like it. Forgettable."
+>
+> Neutral preset: "A May 2026 search of public material did not surface a comparable pattern. The approach is not memorable in isolation."
+
+**`academic`**: formal register, hedging allowed where epistemically honest (a paper *can* say "this evidence suggests" without it being a slop tell), citations and statistical results preserved verbatim, LaTeX and technical terms untouched. Suits journal manuscripts, theses, grant proposals, review reports. Anti-patterns 1 through 6 (significance inflation, notability puffery, -ing analyses, promotional language, vague attributions, "challenges" sections) still apply with full force; these are the patterns most likely to slip into academic prose disguised as scholarly tone.
+
+**default (no preset, no sample)**: PERSONALITY AND SOUL voice. Suits blog posts, essays, opinion pieces, journals, Substack-style writing, anywhere a human author's voice is part of the product.
+
+### How to invoke
+
+- Sample inline: "Humanize this text. Here's a sample of my writing for voice matching: [sample]"
+- Sample from file: "Humanize this text. Use my writing style from [file path] as a reference."
+- Named preset: "Humanize this in neutral professional voice." / "Rewrite this in academic voice."
+- Default: just "Humanize this." (PERSONALITY AND SOUL voice applies)
+
+If the user requests both a preset and a sample, the sample wins (the sample is more specific). If the user requests an undefined preset, fall back to default and note the unrecognised preset name in the response so the user can correct it.
 
 ## PERSONALITY AND SOUL
 
