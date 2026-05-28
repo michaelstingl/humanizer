@@ -104,7 +104,7 @@ Now humanize this text:
 |---|---|---|
 | `neutral professional` / `neutral professional en` | `references/preset-neutral-professional-en.md` | ready |
 | `academic` / `academic en` | `references/preset-academic-en.md` | ready |
-| `neutral professional de` / `neutrales Deutsch` | `references/preset-neutral-professional-de.md` | research stage |
+| `neutral professional de` / `neutrales Deutsch` | `references/preset-neutral-professional-de.md` | early draft v0.1 |
 
 ```
 /humanizer
@@ -113,7 +113,7 @@ Rewrite this in neutral professional voice:
 [paste text]
 ```
 
-If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is in research stage: the universal patterns §1 through §30 still apply, but the German-specific register rules are not yet compiled against the source guides (Duden, DIN 5008, BAMF Plain-Deutsch). See the reference file for current scope and orientation points.
+If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is an early draft (v0.1): the primary sources (Wikipedia:Anzeichen für KI-generierte Inhalte, klartext, Hohenheimer Verständlichkeitsindex) have been identified and the highest-confidence rules are listed. Expect refinement. See the reference file for full rules, sources, and known gaps.
 
 ## Overview
 
