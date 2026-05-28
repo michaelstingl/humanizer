@@ -98,10 +98,10 @@ Now humanize this text:
 [paste AI text to humanize]
 ```
 
-**Option B: request a named voice preset.** Two presets ship with the skill:
+**Option B: request a named voice preset.** Two presets ship with the skill, both scoped to English-language conventions:
 
-- `neutral professional`: third-person, factual, no first-person, no folksy asides. For technical READMEs, API docs, RFCs, project descriptions, internal write-ups.
-- `academic`: formal register, honest hedging allowed, citations and statistical results preserved verbatim. For journal manuscripts, theses, grant proposals, review reports.
+- `neutral professional` (English): third-person for descriptive content, second-person ("you") for instructional content; no first-person; rules drawn from Google, Microsoft, Apple, IBM, GOV.UK, GitLab, Plain Language, and Chicago style guides. For technical READMEs, API docs, RFCs, project descriptions, internal write-ups.
+- `academic` (English): formal register, honest hedging allowed, citations and statistical results preserved verbatim. For journal manuscripts, theses, grant proposals, review reports.
 
 ```
 /humanizer
@@ -110,7 +110,7 @@ Rewrite this in neutral professional voice:
 [paste text]
 ```
 
-If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies.
+If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. No non-English presets ship yet; German, French, Spanish, and other languages have different formal-writing conventions (passive voice tolerance, nominalisation, hedging norms) that warrant separate research and separate presets.
 
 ## Overview
 

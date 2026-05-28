@@ -44,7 +44,22 @@ A sample outranks this skill's style rules, including the em dash rule in §14: 
 
 If the user names a preset, apply it instead of PERSONALITY AND SOUL. All anti-pattern rules in the rest of this skill still apply; the preset only shifts register and voice.
 
-**`neutral professional`**: third-person, factual, no first-person, no folksy asides or one-word sentences for effect. Sentence length still varied, but rhythm is even rather than punchy. Suits technical READMEs, API documentation, RFCs, project descriptions, internal write-ups, vendor-facing prose. Do not inject opinions or mixed feelings. Keep claims sourced or hedged honestly, never both ("studies show" without a study is still an AI tell).
+**`neutral professional`** (English): third-person for descriptive and reference content; second-person ("you") for instructional and procedural content (install steps, how-to). No first-person ("I", "we") in either mode. No folksy asides, no one-word sentences for effect. Sentence length still varied, rhythm even rather than punchy. Suits technical READMEs, API documentation, RFCs, project descriptions, internal write-ups, vendor-facing prose. Do not inject opinions or mixed feelings. Keep claims sourced or hedged honestly, never both ("studies show" without a study is still an AI tell).
+
+**Scope: English (en).** The rules below derive from convergent guidance across the Google developer documentation style guide, Microsoft Writing Style Guide, Apple Style Guide, IBM Style Guide, GOV.UK Content Design Guide, GitLab Documentation Style Guide, Plain Language Action and Information Network guidelines, and the Chicago Manual of Style. They do not apply to German, French, Spanish, or other languages where formal-writing conventions differ significantly (e.g., German tolerates passive voice and nominalised constructions that English style guides reject). For non-English text, request a language-specific preset (none ship yet) or fall back to the default voice with explicit language instruction.
+
+Register-specific rules (in addition to the numbered patterns §1 through §30):
+
+- **Active voice as default.** "The button can be clicked" → "Click the button." Passive is acceptable only when the agent is genuinely unknown or irrelevant.
+- **Present tense.** "The function will return..." → "The function returns..." Future tense ("will") is reserved for genuinely future events, not for describing current behaviour.
+- **No filler intensifiers.** Drop "simply", "easily", "just", "straightforward", "merely". They imply triviality, add no information, and are explicitly banned by Google and Red Hat style guides.
+- **No "utilize" / "leverage" / "facilitate".** Use "use", or name the specific action. "We leverage X" → "X does Y." Banned by Microsoft and GitLab style guides.
+- **No vague behavioural verbs in specifications.** "ensures", "supports", "enables", "provides", "handles" hide the mechanism. Replace with the actual operation and its failure mode. "The service ensures consistency" → "The service uses two-phase commit; writes are rejected if quorum is not reached."
+- **No hedge-stacked modal predictions.** "could potentially enable" / "may help to facilitate" assert nothing. Either commit to a claim or omit it. A single modal or single hedge is fine; stacking them is the tell.
+- **No nominalised verbs.** "perform a restart" → "restart". "make a decision about" → "decide". "give consideration to" → "consider".
+- **No Latin abbreviations in body prose.** "e.g." → "for example", "i.e." → "that is", "etc." → name the missing items or drop them. (Acceptable inside parenthetical asides and citations.)
+- **One idea per sentence.** Two clauses joined by "and" are usually two sentences. Mailchimp's rule of thumb.
+- **No promotional adjectives without measurable backing.** "robust", "comprehensive", "powerful", "seamless", "scalable", "elegant" require either a cited metric or omission. "A scalable system" → "Tested at 10,000 requests per second" or just remove the adjective.
 
 > **Example transformation (neutral preset):**
 >
@@ -52,7 +67,7 @@ If the user names a preset, apply it instead of PERSONALITY AND SOUL. All anti-p
 >
 > Neutral preset: "A May 2026 search of public material did not surface a comparable pattern. The approach is not memorable in isolation."
 
-**`academic`**: formal register, hedging allowed where epistemically honest (a paper *can* say "this evidence suggests" without it being a slop tell), citations and statistical results preserved verbatim, LaTeX and technical terms untouched. Suits journal manuscripts, theses, grant proposals, review reports. Anti-patterns 1 through 6 (significance inflation, notability puffery, -ing analyses, promotional language, vague attributions, "challenges" sections) still apply with full force; these are the patterns most likely to slip into academic prose disguised as scholarly tone.
+**`academic`** (English): formal register, hedging allowed where epistemically honest (a paper *can* say "this evidence suggests" without it being a slop tell), citations and statistical results preserved verbatim, LaTeX and technical terms untouched. Suits journal manuscripts, theses, grant proposals, review reports. Scope: English-language academic conventions. Anti-patterns 1 through 6 (significance inflation, notability puffery, -ing analyses, promotional language, vague attributions, "challenges" sections) still apply with full force; these are the patterns most likely to slip into academic prose disguised as scholarly tone.
 
 **default (no preset, no sample)**: PERSONALITY AND SOUL voice. Suits blog posts, essays, opinion pieces, journals, Substack-style writing, anywhere a human author's voice is part of the product.
 
