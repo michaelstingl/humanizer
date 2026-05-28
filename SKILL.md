@@ -62,27 +62,38 @@ Register-specific rules (in addition to the numbered patterns §1 through §30).
 - **No promotional adjectives without measurable backing.** "robust", "comprehensive", "powerful", "seamless", "scalable", "elegant" require either a cited metric or omission. "A scalable system" → "Tested at 10,000 requests per second" or just remove the adjective. *(Convergent consensus across style guides; no single source bans these by name. Documented as recurring AI tell in [BB] and [CB].)*
 - **Use common words over fancy synonyms.** When two words mean the same thing, prefer the everyday word. This matters extra for non-native English writers: Latinate verbs ("utilize", "terminate", "subsequent") feel natural to German, French, and Spanish speakers but read as formal or distant in English. The Anglo-Saxon synonym is almost always shorter and clearer.
 
-  | Avoid              | Prefer              |
-  |--------------------|---------------------|
-  | utilize            | use                 |
-  | facilitate         | help, allow         |
-  | terminate          | end, stop           |
-  | subsequent         | later, next         |
-  | approximately      | about               |
-  | demonstrate        | show                |
-  | brittle            | fragile             |
-  | ascertain          | find out            |
-  | commence           | start, begin        |
-  | endeavor           | try                 |
-  | prior to           | before              |
-  | requires           | needs               |
-  | sufficient         | enough              |
-  | additional         | more, extra         |
-  | obtain             | get                 |
-  | numerous           | many                |
-  | currently          | now                 |
+  The seven highest-frequency AI-tell pairs:
 
-  Exception: keep precise technical jargon when the common word means something different. "Hash", "salt", "quorum", "commit", "fork", "rebase" carry specific meaning that "scramble", "spice", "majority", "save", "branch", "redo" do not. The rule targets formal-sounding general vocabulary, not domain terms of art. *([PL], [MS], [Kobak].)*
+  | Avoid          | Prefer        |
+  |----------------|---------------|
+  | utilize        | use           |
+  | leverage       | use           |
+  | facilitate     | help, allow   |
+  | demonstrate    | show          |
+  | subsequent     | later, next   |
+  | additional     | more, extra   |
+  | brittle        | fragile       |
+
+  This is an illustrative starter set, not the full catalog. For comprehensive lists, fetch one of the canonical sources directly:
+
+  ```bash
+  # Microsoft Wordiness pack: about 80 substitution pairs in YAML
+  curl -s https://raw.githubusercontent.com/errata-ai/Microsoft/main/Microsoft/Wordiness.yml
+
+  # Plain Language simple-words page: HTML, parseable
+  curl -s https://www.plainlanguage.gov/guidelines/words/use-simple-words-phrases/
+  ```
+
+  Prefer a raw fetch over a small-model summariser. The YAML structure is the value, and a paraphrase loses entries. If the runtime only offers an HTTP-fetch-via-LLM tool (for example WebFetch in Claude Code), instruct it to return the file verbatim, or skip it and use shell.
+
+  Pull the lists into context once per session for tasks that need them. Do not commit a copy to the skill. The upstream lists drift, and a stale embedded copy is worse than a fresh fetch.
+
+  Exception: keep the original word when the common synonym means something different. Two classes to watch for:
+
+  1. **Domain nouns** carrying specific technical meaning: "hash", "salt", "quorum", "commit", "fork", "rebase". "Scramble", "spice", "majority", "save", "branch", and "redo" do not mean the same thing.
+  2. **Specification verbs** carrying obligation, contract, or condition semantics: "requires", "must", "shall", "returns", "raises", "accepts", "rejects". These are not formal synonyms for "needs", "has to", or "gives back". They encode the contract of an API or protocol. RFC 2119 defines "MUST", "SHALL", "SHOULD", and "MAY" as load-bearing terms; treat their lower-case cousins the same way in specifications.
+
+  The rule targets formal-sounding general vocabulary, not load-bearing technical or contractual terms. *([PL], [MS], [Kobak], [RFC 2119].)*
 
 **Sources:**
 
@@ -99,6 +110,7 @@ Register-specific rules (in addition to the numbered patterns §1 through §30).
 - [BB] [AI-Written Specifications: When the Documentation Looks Great but It's Wrong (Byborg Engineering, Medium)](https://medium.com/byborg-engineering/ai-written-specifications-when-the-documentation-looks-great-but-its-wrong-a0ae0c689480)
 - [CB] [conorbronsdon/avoid-ai-writing SKILL.md](https://github.com/conorbronsdon/avoid-ai-writing/blob/main/SKILL.md)
 - [Kobak] [Kobak et al., "Delving into ChatGPT usage in academic writing", Science Advances / arXiv:2406.07016](https://arxiv.org/abs/2406.07016v5). Measured a sudden, large increase in formal vocabulary ("delves", "underscores", "showcasing", "crucial") in PubMed abstracts after ChatGPT's release. Empirical basis for the common-words-over-fancy-synonyms rule.
+- [RFC 2119] [Bradner, "Key words for use in RFCs to Indicate Requirement Levels", IETF RFC 2119 (1997)](https://datatracker.ietf.org/doc/html/rfc2119). Defines "MUST", "SHALL", "SHOULD", "MAY" as load-bearing specification terms. Cited in the common-words rule's exception for specification verbs.
 
 > **Example transformation (neutral preset):**
 >
