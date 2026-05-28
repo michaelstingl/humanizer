@@ -98,10 +98,13 @@ Now humanize this text:
 [paste AI text to humanize]
 ```
 
-**Option B: request a named voice preset.** Two presets ship with the skill, both scoped to English-language conventions:
+**Option B: request a named voice preset.** Each preset has its own reference file in `references/`. The skill reads only the requested preset, keeping SKILL.md small.
 
-- `neutral professional` (English): third-person for descriptive content, second-person ("you") for instructional content; no first-person; rules drawn from Google, Microsoft, Apple, IBM, GOV.UK, GitLab, Plain Language, and Chicago style guides. For technical READMEs, API docs, RFCs, project descriptions, internal write-ups.
-- `academic` (English): formal register, honest hedging allowed, citations and statistical results preserved verbatim. For journal manuscripts, theses, grant proposals, review reports.
+| Preset request | Reference file | Status |
+|---|---|---|
+| `neutral professional` / `neutral professional en` | `references/preset-neutral-professional-en.md` | ready |
+| `academic` / `academic en` | `references/preset-academic-en.md` | ready |
+| `neutral professional de` / `neutrales Deutsch` | `references/preset-neutral-professional-de.md` | research stage |
 
 ```
 /humanizer
@@ -110,7 +113,7 @@ Rewrite this in neutral professional voice:
 [paste text]
 ```
 
-If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. No non-English presets ship yet; German, French, Spanish, and other languages have different formal-writing conventions (passive voice tolerance, nominalisation, hedging norms) that warrant separate research and separate presets.
+If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is in research stage: the universal patterns §1 through §30 still apply, but the German-specific register rules are not yet compiled against the source guides (Duden, DIN 5008, BAMF Plain-Deutsch). See the reference file for current scope and orientation points.
 
 ## Overview
 
