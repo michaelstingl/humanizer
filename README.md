@@ -84,7 +84,9 @@ Humanize the prose in docs/launch-post.md
 
 ### Voice Calibration
 
-To match your personal writing style, provide a sample of your own writing:
+The default voice is the one defined in `PERSONALITY AND SOUL`: natural, varied, opinionated, first-person where it fits. That works for blog posts and essays. For other registers, you have two ways to override it.
+
+**Option A: provide a writing sample.** The skill analyses your sentence rhythm, word choices, and quirks, then applies them to the rewrite instead of producing generic "clean" output.
 
 ```
 /humanizer
@@ -96,7 +98,19 @@ Now humanize this text:
 [paste AI text to humanize]
 ```
 
-The skill will analyze your sentence rhythm, word choices, and quirks, then apply them to the rewrite instead of producing generic "clean" output.
+**Option B: request a named voice preset.** Two presets ship with the skill:
+
+- `neutral professional`: third-person, factual, no first-person, no folksy asides. For technical READMEs, API docs, RFCs, project descriptions, internal write-ups.
+- `academic`: formal register, honest hedging allowed, citations and statistical results preserved verbatim. For journal manuscripts, theses, grant proposals, review reports.
+
+```
+/humanizer
+
+Rewrite this in neutral professional voice:
+[paste text]
+```
+
+If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies.
 
 ## Overview
 
