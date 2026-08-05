@@ -1,5 +1,8 @@
 # Voice preset: `neutral professional` (Deutsch). Draft v0.3.
 
+<!-- de-typo-lint: off -->
+<!-- Dieses Dokument zitiert falsche Glyphen als Beispiele und mischt EN/DE. Der Typografie-Hinweisgeber ist hier daher abgeschaltet; er gilt für Prosa, nicht für den Regelkatalog. -->
+
 Loaded by SKILL.md when the user requests "neutral professional de" or "neutrales Deutsch". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §30 in SKILL.md apply where language-independent (knowledge-cutoff disclaimers, sycophantic tone, generic positive conclusions) but are NOT auto-translated into German equivalents. The German-specific rules below replace or override several of them — including the em-dash rule, which inverts for German (see Typografie).
 
 **Status:** Draft v0.3. v0.2 added the Typografie, Struktur/Formatierung and Rhythmus sections, the DE Quick-Check, and the rhetoric/evidence pattern families from `humanizer-de`. v0.3 replaces the blanket ban on English-language sources with an explicit four-question transferability check (see "Übertragbarkeit EN → DE"), because the causes behind AI tells are better documented in the English literature and part of that carries over. Still short of the EN preset in worked examples.
@@ -119,7 +122,7 @@ Satzlängen-Varianz ist ein belastbares Signal – aber die veröffentlichten Za
 
 ## Quick-Check (DE)
 
-Vor dem vollen Pattern-Pass. Die ersten vier sind mechanisch prüfbar und deshalb zuerst zu prüfen. Drei oder mehr Treffer: Text mit hoher Wahrscheinlichkeit maschinell.
+Vor dem vollen Pattern-Pass. Die ersten vier lassen sich maschinell vorsortieren — `scripts/de_typo_lint.py` liefert sie als Hinweisliste mit Zeilen- und Spaltenangabe. Die Hinweise sind Kandidaten, kein Befund: Zitate, Werktitel, Eigennamen und Code behalten ihre Schreibung, und darüber entscheidet die Durchsicht, nicht das Skript. Drei oder mehr bestätigte Signale: Text mit hoher Wahrscheinlichkeit maschinell.
 
 1. Enthält der Text ein "—" (Geviertstrich)?
 2. Englische Anführungszeichen "…" statt „…"?
@@ -209,11 +212,11 @@ Klartext opens with "Quick-Check mit den 10 lautesten Signalen. Wenn drei oder m
 
 Adoption candidate for SKILL.md: a language-independent Quick-Check so the model can short-circuit when there's nothing to fix.
 
-### From humanizer-de: deterministic linters over model judgement
+### From humanizer-de: scripts as hint generators, not as judges
 
-`humanizer-de` runs roughly a fifth of its patterns as Python linters instead of prompting the model to spot them. Typography, unicode artifacts and rhythm are exactly the class of check where a script beats a judgement call: no false-positive drift, no context cost, reproducible across runs.
+`humanizer-de` runs roughly a fifth of its patterns as Python linters instead of prompting the model to spot them. Adopted here as `scripts/de_typo_lint.py` (ten typography rules, zero dependencies, markdown-aware).
 
-Adoption candidate: a small script per mechanical rule (dash glyph, quote glyph, double space, missing narrow space) that the skill can run before the prose pass. Higher value than extending the word lists further.
+The framing matters, though, and it is easy to get wrong. A script does not settle whether a character is right — it only says where a German norm is probably missed. Every hint needs reading in context: quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code all legitimately keep a "wrong" glyph. The script's value is that it frees attention for the judgement calls, not that it replaces them. Consequences in the implementation: `--fix` is opt-in, blockquotes are never rewritten, unbalanced quote pairs are reported instead of guessed at, and a clean run is explicitly not evidence that the prose is good.
 
 ### From humanizer-de: Evidence-Gate
 
@@ -266,4 +269,4 @@ If a user invokes `neutral professional de` and the rewrite engages unfamiliar G
 2. Apply the Divergence section as a guardrail (do not strip passive, do not break Komposita, do not flatten Nominalstil, do not import English sentence-length targets, and remember the dash rule inverts).
 3. If the text deals with a genre this preset has not been calibrated for (Behördensprache, juristische Texte, wissenschaftliche Publikationen), flag in the response that the preset is calibrated for technical-doc register and the user may want a different preset or sample.
 
-Until v1.0: indicate "v0.2 draft" in the response when applying this preset, so the user knows the rule set is still evolving.
+Until v1.0: indicate "v0.3 draft" in the response when applying this preset, so the user knows the rule set is still evolving.

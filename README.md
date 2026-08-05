@@ -115,6 +115,18 @@ Rewrite this in neutral professional voice:
 
 If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is a draft (v0.3). Its rules are sourced from German-language material (Wikipedia:Anzeichen für KI-generierte Inhalte, marmbiz/humanizer-de, klartext, Duden, DIN 5008, Hohenheimer Verständlichkeitsindex); English-language sources are used only where they document the mechanism behind a tell, and each such use passes a documented four-question transferability check. Numeric thresholds measured on English corpora are never imported. Note that the em-dash rule inverts for German: the em dash is not just overused there, it is the wrong glyph. Expect refinement. See the reference file for full rules, sources, and known gaps.
 
+### Typography hints for German text
+
+`scripts/de_typo_lint.py` reports where German typographic norms are probably missed: em dash instead of Halbgeviertstrich, English or straight quotation marks, typewriter apostrophe, double spaces, missing spaces in abbreviations and before units, spaced Bis-Strich, emoji headings, English title case. Zero dependencies, markdown-aware (skips code fences, inline code, URLs, frontmatter).
+
+```bash
+python3 scripts/de_typo_lint.py text.md          # list hints
+python3 scripts/de_typo_lint.py --list           # list rules
+python3 scripts/de_typo_lint.py --fix text.md    # rewrite the mechanical ones
+```
+
+It generates hints, not verdicts. Quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code legitimately keep a "wrong" glyph, and only reading the passage settles that. Accordingly `--fix` is opt-in, never touches blockquotes, and leaves unbalanced quote pairs alone rather than guessing. A clean run says nothing about whether the prose is any good; it only means the character-level norms are not in the way. Exit code 1 means there are hints to review.
+
 ## Overview
 
 Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. This comprehensive guide comes from observations of thousands of instances of AI-generated text.
