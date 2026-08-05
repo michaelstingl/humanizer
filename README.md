@@ -104,7 +104,7 @@ Now humanize this text:
 |---|---|---|
 | `neutral professional` / `neutral professional en` | `references/preset-neutral-professional-en.md` | ready |
 | `academic` / `academic en` | `references/preset-academic-en.md` | ready |
-| `neutral professional de` / `neutrales Deutsch` | `references/preset-neutral-professional-de.md` | draft v0.2 |
+| `neutral professional de` / `neutrales Deutsch` | `references/preset-neutral-professional-de.md` | draft v0.3 |
 
 ```
 /humanizer
@@ -113,7 +113,7 @@ Rewrite this in neutral professional voice:
 [paste text]
 ```
 
-If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is a draft (v0.2). It is sourced from German-language material only (Wikipedia:Anzeichen für KI-generierte Inhalte, marmbiz/humanizer-de, klartext, Duden, DIN 5008, Hohenheimer Verständlichkeitsindex) and deliberately does not import numeric thresholds measured on English corpora. Note that the em-dash rule inverts for German: the em dash is not just overused there, it is the wrong glyph. Expect refinement. See the reference file for full rules, sources, and known gaps.
+If both a preset and a sample are given, the sample wins (it is more specific). If neither is given, the default voice applies. The German preset is a draft (v0.3). Its rules are sourced from German-language material (Wikipedia:Anzeichen für KI-generierte Inhalte, marmbiz/humanizer-de, klartext, Duden, DIN 5008, Hohenheimer Verständlichkeitsindex); English-language sources are used only where they document the mechanism behind a tell, and each such use passes a documented four-question transferability check. Numeric thresholds measured on English corpora are never imported. Note that the em-dash rule inverts for German: the em dash is not just overused there, it is the wrong glyph. Expect refinement. See the reference file for full rules, sources, and known gaps.
 
 ## Overview
 

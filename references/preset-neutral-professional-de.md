@@ -1,8 +1,8 @@
-# Voice preset: `neutral professional` (Deutsch). Draft v0.2.
+# Voice preset: `neutral professional` (Deutsch). Draft v0.3.
 
 Loaded by SKILL.md when the user requests "neutral professional de" or "neutrales Deutsch". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §30 in SKILL.md apply where language-independent (knowledge-cutoff disclaimers, sycophantic tone, generic positive conclusions) but are NOT auto-translated into German equivalents. The German-specific rules below replace or override several of them — including the em-dash rule, which inverts for German (see Typografie).
 
-**Status:** Draft v0.2. New in this revision: a Typografie section (deterministically checkable, DE-normative sources), a Struktur/Formatierung section, a Rhythmus section that explicitly refuses to import English sentence-length thresholds, a DE Quick-Check, and the rhetoric/evidence pattern families from `humanizer-de`. Still short of the EN preset in worked examples.
+**Status:** Draft v0.3. v0.2 added the Typografie, Struktur/Formatierung and Rhythmus sections, the DE Quick-Check, and the rhetoric/evidence pattern families from `humanizer-de`. v0.3 replaces the blanket ban on English-language sources with an explicit four-question transferability check (see "Übertragbarkeit EN → DE"), because the causes behind AI tells are better documented in the English literature and part of that carries over. Still short of the EN preset in worked examples.
 
 ## Voice mode
 
@@ -10,7 +10,7 @@ Sie-Anrede for descriptive and reference content directed at the reader; imperso
 
 ## Scope: German (de)
 
-Targets German neutral-professional prose. Does not target Bürgersprache / Leichte Sprache (which has its own DIN SPEC 33429 standard and stricter conventions), nor literary or marketing German. The rules below reflect convergent guidance across German-language sources only: Wikipedia:Anzeichen für KI-generierte Inhalte, `marmbiz/humanizer-de`, `severinschweiger/klartext`, the Klartext-Initiative Hohenheim, Duden Rechtschreibregeln, DIN 5008, and German-language reporting on AI tells. English-language studies are cited nowhere as a rule basis; see "Warum keine englischsprachigen Studien" below.
+Targets German neutral-professional prose. Does not target Bürgersprache / Leichte Sprache (which has its own DIN SPEC 33429 standard and stricter conventions), nor literary or marketing German. The rules below reflect convergent guidance across German-language sources: Wikipedia:Anzeichen für KI-generierte Inhalte, `marmbiz/humanizer-de`, `severinschweiger/klartext`, the Klartext-Initiative Hohenheim, Duden Rechtschreibregeln, DIN 5008, and German-language reporting on AI tells. English-language sources are used where they describe the *mechanism* behind a tell, which is usually language-independent, but every such use passes the transferability check in "Übertragbarkeit EN → DE" below and states its transfer status in the citation.
 
 ## Divergence from English preset (do not auto-translate)
 
@@ -23,7 +23,7 @@ These differences are firmly established. The English `neutral professional` rul
 - **Address mode is Sie / impersonal.** Formal German uses "Sie" or impersonal "man" / "es ist zu beachten". The English "you" rule maps to "Sie", not to "du".
 - **Bandwurmsätze tolerate higher word counts.** Plain Language 15-20-word target does not transfer. German formal writing routinely uses 25-35-word sentences. The Hohenheimer Verständlichkeitsindex (HIX) is the correct target instead.
 - **The dash rule inverts.** SKILL.md treats the em dash (—) as an overuse tell to be reduced. In German the em dash is not merely overused, it is the wrong glyph: German sets the Gedankenstrich as a Halbgeviertstrich (–) with surrounding spaces. Every "—" in German prose is an English-typography import. *([WP-TYP], [GOL].)*
-- **Sentence-length variance thresholds do not transfer.** Numeric burstiness targets published for English prose describe an English corpus. Do not apply them to German. See Rhythmus.
+- **Sentence-length variance: mechanism transfers, numbers do not.** That models produce flatter sentence-length distributions than humans is a property of the generation process, not of English. The published *values* (word bands, variance thresholds) were measured on English corpora and hang on English sentence-length norms. Take the mechanism, leave the number. See Rhythmus and Übertragbarkeit.
 
 ## Register-specific rules
 
@@ -113,7 +113,7 @@ Diese Regeln sind der wertvollste Teil des Presets, weil sie ohne Modell-Urteil 
 
 Satzlängen-Varianz ist ein belastbares Signal – aber die veröffentlichten Zahlenwerte stammen aus englischsprachigen Korpora und gelten hier nicht.
 
-- **Satzlängen variieren lassen.** Gleichförmige Satzlängen über einen ganzen Abschnitt sind ein Tell. Das ist qualitativ anzuwenden, nicht gegen einen importierten Schwellenwert. *([KOR] nennt einen Variationskoeffizienten unter 0,4 als verdächtig, beruft sich dafür aber auf eine englischsprachige Untersuchung; die Zahl ist für formelles Deutsch nicht validiert und wird hier bewusst nicht als Zielwert gesetzt.)*
+- **Satzlängen variieren lassen.** Gleichförmige Satzlängen über einen ganzen Abschnitt sind ein Tell. Qualitativ anwenden, nicht gegen einen importierten Schwellenwert. *(Mechanismus belegt über [Desaire] — Satzlängen-Variabilität war dort ein tragendes Merkmal menschlicher Fachprosa; Transfer: Mechanismus ja, Zahlenwert nein. [KOR] nennt einen Variationskoeffizienten unter 0,4 als verdächtig, referenziert dafür aber englischsprachige Forschung; für formelles Deutsch mit seinen längeren Sätzen ist die Schwelle nicht validiert und wird hier nicht als Zielwert gesetzt.)*
 - **Als deutschsprachiger Ersatzmaßstab dient HIX**, der unter anderem den Anteil der Sätze über 20 Wörter und die Nominalisierungsrate als Parameter führt – beides deutschspezifisch kalibriert. *([HIX], [KT-INIT].)*
 - **Formelles Deutsch darf lang sein.** 25–35 Wörter sind normal. Wer deutsche Sätze auf englisches Plain-Language-Maß kürzt, produziert einen anderen Fehler, nicht weniger KI-Geruch.
 
@@ -148,9 +148,32 @@ Use the Hohenheimer Verständlichkeitsindex (HIX) instead of Flesch-Kincaid Grad
 
 Validation tool: TextLab ([klartext.uni-hohenheim.de/klartext_textlab](https://klartext.uni-hohenheim.de/klartext_textlab)). *([HIX], [KT-INIT].)*
 
-## Warum keine englischsprachigen Studien als Regelbasis
+## Übertragbarkeit EN → DE
 
-Das EN-Preset stützt seine Wortlisten-Regel auf Kobak et al. (Korpus-Verschiebung in englischen PubMed-Abstracts). Für Deutsch existiert keine äquivalente Untersuchung. Naheliegende englischsprachige Ersatzquellen – etwa Arbeiten zu Burstiness und Satzlängen-Varianz – messen englische Prosa und liefern Zahlenwerte, die an englischen Satzlängen-Normen hängen. Sie in ein DE-Preset zu übernehmen wäre derselbe Fehler wie die Übernahme der Aktiv-statt-Passiv-Regel: formal plausibel, sprachlich falsch. Deshalb gilt hier: qualitative Regel ja, importierter Schwellenwert nein. Die Lücke ist als offene Frage dokumentiert, nicht überdeckt.
+Englischsprachige Quellen sind für dieses Preset nicht gesperrt. Die Ursachen von KI-Tells sind in der EN-Literatur besser beschrieben, weil dort früher und mehr gemessen wurde, und ein Teil davon gilt sprachunabhängig. Gesperrt ist nur die stillschweigende Übernahme: jede EN-gestützte Regel wird vor Aufnahme geprüft und trägt ihren Transferstatus in der Quellenangabe.
+
+### Prüfschema pro Aspekt
+
+Vier Fragen, in dieser Reihenfolge:
+
+1. **Beschreibt die Quelle einen Mechanismus oder eine Sprachnorm?** Mechanismen übertragen sich: das Modell mittelt, greift zum häufigeren Wort, gleicht Satzlängen an, rundet Absätze mit einem Merksatz ab. Das sind Eigenschaften der Generierung, nicht des Englischen. Sprachnormen übertragen sich nicht: Aktiv vor Passiv, kein Nominalstil, 15–20 Wörter pro Satz sind Eigenschaften des Englischen.
+2. **Hängt die Regel an einem Zahlenwert?** Dann Mechanismus übernehmen, Zahl weglassen. Sie wurde an einem englischen Korpus mit englischen Satzlängen und englischer Wortbildung gemessen. Entweder gegen eine deutsche Referenz neu kalibrieren (HIX führt deutschspezifische Parameter) oder qualitativ formulieren.
+3. **Widerspricht die Regel einem Eintrag der Divergence-Liste?** Dann gewinnt die Divergence-Liste. Beispiel: „Verantwortungs-Verschleierung vermeiden" ist übertragbar, „Passiv vermeiden" nicht, obwohl englische Quellen beides in einem Atemzug nennen.
+4. **Belegt eine deutschsprachige Quelle dasselbe?** Dann diese zitieren und die EN-Quelle höchstens ergänzend nennen. Bei gleicher Aussagekraft ist die DE-Quelle vorzuziehen, weil sie die Norm-Frage schon geklärt hat.
+
+### Notation in den Quellenangaben
+
+- *(Transfer EN→DE geprüft: Mechanismus ja, Zahlenwert nein.)* Regel übernommen, Zahl weggelassen.
+- *(Übertragung aus EN-Preset, konvergent.)* Regel übernommen, keine DE-Quelle gefunden, kein Norm-Konflikt.
+- *([DE-Quelle]; Mechanismus zusätzlich in [EN-Quelle] beschrieben.)* DE-Beleg führt, EN erklärt das Warum.
+
+### Bekannte Grenzfälle
+
+- **Vokabular-Verschiebung.** [Kobak] weist für englische PubMed-Abstracts einen messbaren Vokabular-Sprung nach ChatGPT nach. Der Mechanismus, dass Modelle zum formelleren Synonym greifen, ist plausibel sprachunabhängig; die Wortliste ist es nicht. „delves", „underscores", „showcasing" haben keine automatischen deutschen Entsprechungen. Für Deutsch fehlt die äquivalente Korpus-Studie, deshalb sind die Wortregeln hier aus [WP-DE] und [HDE] belegt und [Kobak] steht nur für das Warum.
+- **Satzlängen-Varianz.** Mechanismus ja, Schwellenwert nein. Siehe Rhythmus.
+- **Geviertstrich.** Der EN-Befund „übernutzt" gilt auch für Deutsch, wird dort aber vom härteren Befund überlagert, dass das Zeichen falsch ist. Beide Regeln gelten, die typografische zuerst.
+- **Plain-Language-Satzlänge.** Klarer Nicht-Transfer. Englische 15–20-Wort-Ziele auf deutsche Fachprosa angewandt erzeugen einen anderen Fehler, nicht weniger KI-Geruch.
+- **Register-Marker.** Die EN-Regel „common words over fancy synonyms" beruht auf dem angelsächsisch/lateinischen Doppelbestand des Englischen. Deutsch hat diese Zweigleisigkeit in dieser Form nicht; das deutsche Gegenstück ist eher Amtsdeutsch gegen Standardsprache. Nicht 1:1 übertragbar, aber als Prinzip verwandt: siehe „Keine archaischen Demonstrative".
 
 ## Sources
 
@@ -172,6 +195,8 @@ Das EN-Preset stützt seine Wortlisten-Regel auf Kobak et al. (Korpus-Verschiebu
 - [DIN-LS] [DIN SPEC 33429:2025-03 (Leichte Sprache)](https://www.dinmedia.de/en/technical-rule/din-spec-33429/387728031). First unified DIN for plain German. Targets accessibility, not neutral-professional, but its sentence-length and active-construction rules transfer in spirit.
 - [Duden] [Duden Sprachratgeber](https://www.duden.de/sprachwissen/sprachratgeber). Editorial articles on German style, grammar, formality. Reference for "what correct formal German looks like", no AI-specific guidance.
 - [Bund-LS] [Bundesregierung Leichte Sprache](https://www.bundesregierung.de/breg-de/leichte-sprache). German government plain-language portal. Accessibility focus; transfers in spirit to anti-verbosity rules.
+- [Kobak] [Kobak et al., "Delving into ChatGPT usage in academic writing", Science Advances / arXiv:2406.07016](https://arxiv.org/abs/2406.07016v5). Englischsprachige Korpus-Studie: messbarer Anstieg formeller Vokabeln in PubMed-Abstracts nach ChatGPT. Hier ausschließlich als Mechanismus-Referenz (Modelle greifen zum formelleren Synonym). Transfer geprüft: Mechanismus ja, Wortliste nein — die englischen Marker haben keine automatischen deutschen Entsprechungen. Ein deutsches Äquivalent der Studie fehlt.
+- [Desaire] [Desaire et al., "Distinguishing academic science writing from humans or ChatGPT with over 99% accuracy using off-the-shelf machine learning tools", Cell Reports Physical Science 4, 101426 (2023)](https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(23)00200-X). University of Kansas. Merkmalsbasierte Erkennung englischer Fachprosa; Satzlängen-Variabilität gehört zu den tragenden menschlichen Merkmalen. Hier als Mechanismus-Referenz für die Rhythmus-Regel. Transfer geprüft: Mechanismus ja, Zahlenwerte nein — die Wortbänder stammen aus englischen Korpora.
 - [RFC-2119] [Bradner, IETF RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119). MUST/SHALL/SHOULD/MAY as load-bearing terms. German equivalents (MUSS/SOLL/DARF NICHT) inherit the contract semantics.
 
 ## Lessons beyond pattern content
@@ -229,7 +254,7 @@ Klartext keeps universal and German-specific patterns in one file, marking the l
 - This file is treated as the authoritative DE preset definition. SKILL.md routing points here.
 - Versioning: bump the v0.X version in the title line when register-specific rules change. v0.1 = initial draft, v0.2 = typography, structure, rhythm, Quick-Check, evidence/rhetoric families.
 - Every rule carries a bracket code. A rule without a source does not go in. Where a rule is transferred rather than sourced, the transfer is named as such in the citation.
-- German rules take German sources. English-language studies may inform structure or method, but are not cited as a rule basis for German prose; see "Warum keine englischsprachigen Studien".
+- German rules prefer German sources. English-language sources are allowed where they describe the mechanism behind a tell, but every such rule must pass the four-question check in "Übertragbarkeit EN → DE" and state its transfer status in the citation. Never adopt an English numeric threshold or an English language norm unchecked.
 - New patterns added to Wikipedia:DE or `humanizer-de` should be reviewed and adopted where they fit the neutral-professional register (skip patterns that are encyclopaedic-only or marketing-only).
 - The "Lessons beyond pattern content" section is the place to capture process-level learnings from observed German skills. Do not put them in the rules section; the rules section is for what to apply to text.
 

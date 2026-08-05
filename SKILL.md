@@ -47,7 +47,7 @@ If the user names a preset, read the matching reference file in `references/` an
 | Preset request                                       | Reference file                              |
 |------------------------------------------------------|---------------------------------------------|
 | "neutral professional" or "neutral professional en"  | `references/preset-neutral-professional-en.md` |
-| "neutral professional de" or "neutrales Deutsch"     | `references/preset-neutral-professional-de.md` (draft v0.2) |
+| "neutral professional de" or "neutrales Deutsch"     | `references/preset-neutral-professional-de.md` (draft v0.3) |
 | "academic" or "academic en"                          | `references/preset-academic-en.md`          |
 
 Each reference file contains the full preset definition: voice mode, language scope, register-specific rules, sources, and example transformation. The numbered patterns §1 through §30 in this SKILL.md apply on top of every preset; the reference files do not repeat them.
