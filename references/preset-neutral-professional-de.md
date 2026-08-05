@@ -216,7 +216,9 @@ Adoption candidate for SKILL.md: a language-independent Quick-Check so the model
 
 `humanizer-de` runs roughly a fifth of its patterns as Python linters instead of prompting the model to spot them. Adopted here as `scripts/de_typo_lint.py` (ten typography rules, zero dependencies, markdown-aware).
 
-The framing matters, though, and it is easy to get wrong. A script does not settle whether a character is right — it only says where a German norm is probably missed. Every hint needs reading in context: quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code all legitimately keep a "wrong" glyph. The script's value is that it frees attention for the judgement calls, not that it replaces them. Consequences in the implementation: `--fix` is opt-in, blockquotes are never rewritten, unbalanced quote pairs are reported instead of guessed at, and a clean run is explicitly not evidence that the prose is good.
+The framing matters, though, and it is easy to get wrong. A script does not settle whether a character is right, it only says where a German norm is probably missed. Every hint needs reading in context: quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code all legitimately keep a "wrong" glyph. The script's value is that it frees attention for the judgement calls, not that it replaces them.
+
+Consequence in the implementation: the tool reports and never rewrites. An auto-fix mode existed in the first version and was removed — the exception list that would make unattended replacement safe cannot be written, and the texts most likely to carry a deliberately "wrong" glyph (quotations, contract language, archived correspondence) are exactly the ones where a silent edit does real damage. A clean run is explicitly not evidence that the prose is good.
 
 ### From humanizer-de: Evidence-Gate
 

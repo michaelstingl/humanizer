@@ -122,10 +122,9 @@ If both a preset and a sample are given, the sample wins (it is more specific). 
 ```bash
 python3 scripts/de_typo_lint.py text.md          # list hints
 python3 scripts/de_typo_lint.py --list           # list rules
-python3 scripts/de_typo_lint.py --fix text.md    # rewrite the mechanical ones
 ```
 
-It generates hints, not verdicts. Quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code legitimately keep a "wrong" glyph, and only reading the passage settles that. Accordingly `--fix` is opt-in, never touches blockquotes, and leaves unbalanced quote pairs alone rather than guessing. A clean run says nothing about whether the prose is any good; it only means the character-level norms are not in the way. Exit code 1 means there are hints to review.
+It generates hints, not verdicts, and it has no fix mode by design. Quoted English titles, verbatim quotation where the received state has to stay provable, brand names and inline code legitimately keep a "wrong" glyph, and only reading the passage settles that — so replacing characters unattended can corrupt exactly the text that must not change. The edit stays a judgement call for a person or for the prose pass. A clean run says nothing about whether the prose is any good; it only means the character-level norms are not in the way. Exit code 1 means there are hints to review.
 
 ## Overview
 

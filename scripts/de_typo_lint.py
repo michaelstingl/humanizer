@@ -17,13 +17,16 @@ context. Legitimate reasons to leave a flagged character alone:
   - code, config or data shown in running prose
   - deliberate register choices in dialogue or literary passages
 
-Therefore --fix skips blockquotes entirely and is opt-in. Reported hints are
-never a verdict, and a clean run is not evidence that the prose is good.
+Therefore this tool never rewrites anything. It has no fix mode on purpose:
+replacing a character without reading the passage around it can corrupt a
+quotation, a work title or an identifier, and no exception list is reliable
+enough to make that safe. The hints are input for a person or for the prose
+pass; the edit itself is a judgement call. A clean run is not evidence that the
+prose is good.
 
 Usage:
     de_typo_lint.py FILE [FILE ...]     check
     de_typo_lint.py -                   check stdin
-    de_typo_lint.py --fix FILE          rewrite the mechanical hints (skips blockquotes)
     de_typo_lint.py --list              list rules
 
 Exit codes: 0 no hints, 1 hints to review, 2 usage error.
@@ -78,7 +81,9 @@ RULES = {
     "DE-T10": "Englische Title-Case in der Überschrift",
 }
 
-FIXABLE = {"DE-T01", "DE-T02", "DE-T03", "DE-T04", "DE-T05", "DE-T06",
+# Rules a machine can state with certainty. Still not rules a machine may
+# apply on its own: see the module docstring.
+MECHANICAL = {"DE-T01", "DE-T02", "DE-T03", "DE-T04", "DE-T05", "DE-T06",
            "DE-T07", "DE-T08"}
 
 
@@ -88,7 +93,7 @@ class Finding:
             path, line, col, rule, excerpt)
 
     def __str__(self):
-        mark = " [mechanisch]" if self.rule in FIXABLE else " [Urteil nötig]"
+        mark = " [mechanisch]" if self.rule in MECHANICAL else " [Urteil nötig]"
         return "%s:%d:%d: %s %s%s | %s" % (
             self.path, self.line, self.col, self.rule, RULES[self.rule],
             mark, self.excerpt)
@@ -212,66 +217,17 @@ def iter_prose_lines(lines):
         yield i, line
 
 
-def fix_line(raw):
-    text = raw
-
-    # Dash glyph. A spaced em dash is a Gedankenstrich; an unspaced one between
-    # words is the English setting and also becomes a spaced Halbgeviertstrich.
-    text = text.replace(" %s " % EM_DASH, " %s " % EN_DASH)
-    text = re.sub(r"(?<=\w)%s(?=\w)" % EM_DASH, " %s " % EN_DASH, text)
-    text = text.replace(EM_DASH, EN_DASH)
-
-    # Quotation marks. Order matters: the German closing quote and the English
-    # opening quote are the same codepoint (U+201C), so converting English
-    # openers must happen before English closers, and neither may run as a
-    # blanket replace afterwards.
-    text = re.sub(r"(?:(?<=^)|(?<=[\s(\[]))%s(?=\w)" % LDQUO, GLDQUO, text)
-    text = text.replace(RDQUO, GRDQUO)
-
-    # Straight quotes, pairwise: odd occurrence opens, even closes. Unbalanced
-    # lines are left alone rather than guessed at.
-    if text.count('"') >= 2 and text.count('"') % 2 == 0:
-        chunks = text.split('"')
-        rebuilt = chunks[0]
-        for idx in range(1, len(chunks)):
-            rebuilt += (GLDQUO if idx % 2 else GRDQUO) + chunks[idx]
-        text = rebuilt
-
-    text = re.sub(r"(?<=\w)'(?=\w)|(?<=\w)'(?=\s|$)", APOS, text)
-    text = re.sub(r"([.!?:])  +(?=\S)", r"\1 ", text)
-
-    for abbr in ABBREVS:
-        spaced = abbr.replace(".", ". ").rstrip()
-        text = text.replace(abbr, spaced)
-    text = re.sub(r"\s+$", "", text) if raw.strip() else text
-
-    text = re.sub(r"(\d)%", r"\1 %", text)
-    text = re.sub(r"(\d)(%s)\b" % "|".join(UNITS), r"\1 \2", text)
-    text = re.sub(r"(\d)\s+%s\s+(\d)" % EN_DASH, r"\1%s\2" % EN_DASH, text)
-    return text
-
-
-def process(path, lines, do_fix):
+def process(path, lines):
     findings = []
-    changed = False
     for i, line in iter_prose_lines(lines):
         findings.extend(check_line(path, i + 1, line.rstrip("\n")))
-        if do_fix and line.lstrip().startswith(">"):
-            continue      # quoted material keeps its received spelling
-        if do_fix:
-            new = fix_line(line.rstrip("\n"))
-            if new != line.rstrip("\n"):
-                lines[i] = new + ("\n" if line.endswith("\n") else "")
-                changed = True
-    return findings, changed
+    return findings
 
 
 def main():
     ap = argparse.ArgumentParser(add_help=True, description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("files", nargs="*", help="files to check, or - for stdin")
-    ap.add_argument("--fix", action="store_true",
-                    help="rewrite the mechanical hints in place; skips blockquotes, review the diff")
     ap.add_argument("--list", action="store_true", help="list rules and exit")
     ap.add_argument("--quiet", action="store_true", help="exit code only")
     args = ap.parse_args()
@@ -279,7 +235,7 @@ def main():
     if args.list:
         for rid, desc in sorted(RULES.items()):
             print("%s  %s%s" % (rid, desc,
-                                "  [mechanisch]" if rid in FIXABLE else "  [Urteil nötig]"))
+                                "  [mechanisch]" if rid in MECHANICAL else "  [Urteil nötig]"))
         return 0
     if not args.files:
         ap.print_usage()
@@ -288,12 +244,8 @@ def main():
     all_findings = []
     for path in args.files:
         if path == "-":
-            if args.fix:
-                sys.stderr.write("--fix needs a file, not stdin\n")
-                return 2
             lines = sys.stdin.read().splitlines(keepends=True)
-            f, _ = process("<stdin>", lines, False)
-            all_findings.extend(f)
+            all_findings.extend(process("<stdin>", lines))
             continue
         try:
             with open(path, encoding="utf-8") as fh:
@@ -301,13 +253,7 @@ def main():
         except OSError as exc:
             sys.stderr.write("%s: %s\n" % (path, exc))
             return 2
-        f, changed = process(path, lines, args.fix)
-        all_findings.extend(f)
-        if changed:
-            with open(path, "w", encoding="utf-8") as fh:
-                fh.writelines(lines)
-            if not args.quiet:
-                print("%s: fixed" % path)
+        all_findings.extend(process(path, lines))
 
     all_findings.sort(key=lambda f: (f.path, f.line, f.col))
     if not args.quiet:
