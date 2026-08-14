@@ -6,6 +6,27 @@ Guidance for AI coding agents (Claude Code, Codex, Warp, etc.) working in this r
 
 A portable agent skill implemented entirely as Markdown. The runtime artifact is `SKILL.md`: the agent reads its YAML frontmatter and editor prompt. There is no build step, and the repo should avoid wording that limits support to one or two harnesses.
 
+## Relationship to upstream
+
+This repository is a permanent fork of [blader/humanizer](https://github.com/blader/humanizer), not a staging area for pull requests against it. Upstream has ruled on this explicitly. Closing the French adaptation's policy question in [issue #163](https://github.com/blader/humanizer/issues/163) (June 2026), the maintainer wrote:
+
+> I prefer localized variants to remain separate community repositories so each language can evolve without adding duplicate runtime authorities here. Humanizer-fr is the right shape, so I am closing this policy question with appreciation.
+
+Later language requests follow that shape by default; issues [#194](https://github.com/blader/humanizer/issues/194) and [#203](https://github.com/blader/humanizer/issues/203) propose Chinese adaptations as separate repos in their titles. The ecosystem around this skill is forks, by design.
+
+Consequences for anyone working here:
+
+- **Do not prepare pull requests to upstream for language or register work, and do not propose them.** The answer is already on record.
+- The German preset and `scripts/de_typo_lint.py` live here permanently. Peer projects occupy the same niche independently: `marmbiz/humanizer-de` (the most developed, actively released), `ferr079/humanizer-fr`, `LangeVC/txtHumanizer`. See the Sources block in the German preset for how they relate.
+- One thing the policy does *not* cover: the English preset layer (`preset-neutral-professional-en.md`, `preset-academic-en.md`) is register calibration, not localization, so upstream has never been asked about it. Do not assume either answer.
+
+Branch layout follows from this:
+
+- `main` — the default branch and the version actually used. Upstream plus the preset layer.
+- `upstream-main` — a clean mirror of `blader/humanizer`, tracking `origin/main`.
+
+To take upstream changes: `git checkout upstream-main && git pull`, then `git checkout main && git merge upstream-main`. Resolve conflicts in favour of upstream for anything upstream owns (pattern numbering, packaging metadata, frontmatter), and in favour of this fork for the preset layer. Where upstream restructures a section this fork extends, adopt their structure and re-apply the extension on top rather than restoring the old shape, or the same conflict returns at every sync.
+
 ## Key files
 
 - `SKILL.md` — the skill itself. Portable YAML frontmatter (`name`, `description`, `license`, `metadata.version`) followed by the canonical, numbered pattern list with before/after examples, the default `PERSONALITY AND SOUL` voice, and Voice Calibration routing. **This is the source of truth for universal patterns.**
