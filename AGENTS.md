@@ -34,7 +34,9 @@ To take upstream changes: `git checkout upstream-main && git pull`, then `git ch
 - `README.md` — for humans: installation, usage, a summary table of the patterns, and a version history.
 - `.claude-plugin/plugin.json` — optional Claude Code plugin manifest.
 - `.claude-plugin/marketplace.json` — optional single-repo marketplace entry so `/plugin marketplace add blader/humanizer` works.
-- `scripts/validate-package.py` — dependency-free package and synchronization checks used locally and in CI.
+- `scripts/validate-package.py` — upstream's dependency-free package and synchronization checks, used locally and in CI.
+- `scripts/validate-presets.py` — this fork's checks for the preset layer: frontmatter, filename, routing from both tables, draft marking. Separate from upstream's validator so syncs cannot collide with it.
+- `scripts/de_typo_lint.py` — German typography hint generator for the DE preset. Reports candidates, decides nothing.
 
 ## The maintenance contract
 
