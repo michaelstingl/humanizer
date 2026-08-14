@@ -1,3 +1,10 @@
+---
+preset: neutral-professional
+lang: en
+version: "1.0"
+status: stable
+---
+
 # Voice preset: `neutral professional` (English)
 
 Loaded by SKILL.md when the user requests "neutral professional", "neutral professional en", or equivalent. Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §33 in SKILL.md still apply unchanged; this preset only shifts register and voice.

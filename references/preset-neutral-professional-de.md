@@ -1,3 +1,10 @@
+---
+preset: neutral-professional
+lang: de
+version: "0.3"
+status: draft
+---
+
 # Voice preset: `neutral professional` (Deutsch). Draft v0.3.
 
 <!-- de-typo-lint: off -->
