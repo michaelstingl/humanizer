@@ -3,7 +3,7 @@
 <!-- de-typo-lint: off -->
 <!-- Dieses Dokument zitiert falsche Glyphen als Beispiele und mischt EN/DE. Der Typografie-Hinweisgeber ist hier daher abgeschaltet; er gilt für Prosa, nicht für den Regelkatalog. -->
 
-Loaded by SKILL.md when the user requests "neutral professional de" or "neutrales Deutsch". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §30 in SKILL.md apply where language-independent (knowledge-cutoff disclaimers, sycophantic tone, generic positive conclusions) but are NOT auto-translated into German equivalents. The German-specific rules below replace or override several of them — including the em-dash rule, which inverts for German (see Typografie).
+Loaded by SKILL.md when the user requests "neutral professional de" or "neutrales Deutsch". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §33 in SKILL.md apply where language-independent (knowledge-cutoff disclaimers, sycophantic tone, generic positive conclusions) but are NOT auto-translated into German equivalents. The German-specific rules below replace or override several of them — including the em-dash rule, which inverts for German (see Typografie).
 
 **Status:** Draft v0.3. v0.2 added the Typografie, Struktur/Formatierung and Rhythmus sections, the DE Quick-Check, and the rhetoric/evidence pattern families from `humanizer-de`. v0.3 replaces the blanket ban on English-language sources with an explicit four-question transferability check (see "Übertragbarkeit EN → DE"), because the causes behind AI tells are better documented in the English literature and part of that carries over. Still short of the EN preset in worked examples.
 
@@ -30,7 +30,7 @@ These differences are firmly established. The English `neutral professional` rul
 
 ## Register-specific rules
 
-In addition to the language-independent numbered patterns §1 through §30. Bracket codes resolve to URLs in the Sources block.
+In addition to the language-independent numbered patterns §1 through §33. Bracket codes resolve to URLs in the Sources block.
 
 ### Bedeutungs- und Werbeinflation
 
@@ -252,6 +252,8 @@ Klartext keeps universal and German-specific patterns in one file, marking the l
 - `humanizer-de` has 72 patterns; this preset covers a subset. Which of the remaining ones are genuinely register-relevant for technical prose rather than encyclopaedic or marketing-specific? Full diff pending.
 - Wikipedia:DE has been "import-and-adapt" from EN since September 2025. Has the DE community diverged in a direction the EN page does not cover? Spot-check 2026 revisions against the EN equivalent.
 - No German Vale style pack exists. Building one (errata-ai equivalent) would be a substantial community contribution and would give the mechanical rules a standard runner. Out of scope here, worth tracking.
+- Upstream v2.8.0 added §31 (manufactured punchlines), §32 (aphorism formulas) and §33 (conversational rhetorical openers). None has been through the transferability check yet. First reading: §31 and §32 look like they describe a mechanism (a cadence borrowed from ad copy and from proverb syntax) rather than an English surface form, so they probably transfer with German exemplars substituted; §33 is the doubtful one, because German technical prose has its own opener repertoire and the English examples will not map. Do not adopt any of the three until each is checked and cited.
+- Upstream v2.9.0 added a no-fabrication rule (no fact, name, date or citation in the rewrite that is not in the source). It is language-independent and needs no DE variant, but it overlaps with this preset's Evidence-Gate. Decide whether the Evidence-Gate keeps its own wording or reduces to a DE-specific addendum to the universal rule.
 - Register reconciliation: klartext targets blog/marketing, this preset targets technical docs, Wikipedia:DE is encyclopaedic, `humanizer-de` spans several. Where the three disagree, which wins for neutral-professional?
 
 ## Maintenance contract for this preset
@@ -261,13 +263,14 @@ Klartext keeps universal and German-specific patterns in one file, marking the l
 - Every rule carries a bracket code. A rule without a source does not go in. Where a rule is transferred rather than sourced, the transfer is named as such in the citation.
 - German rules prefer German sources. English-language sources are allowed where they describe the mechanism behind a tell, but every such rule must pass the four-question check in "Übertragbarkeit EN → DE" and state its transfer status in the citation. Never adopt an English numeric threshold or an English language norm unchecked.
 - New patterns added to Wikipedia:DE or `humanizer-de` should be reviewed and adopted where they fit the neutral-professional register (skip patterns that are encyclopaedic-only or marketing-only).
+- New numbered patterns added to SKILL.md upstream are English-sourced and do not enter this preset automatically. Each one goes through the four-question check like any other English source, and lands either as a transferred rule with its transfer status stated, or in "Open questions" with the reason it was held back.
 - The "Lessons beyond pattern content" section is the place to capture process-level learnings from observed German skills. Do not put them in the rules section; the rules section is for what to apply to text.
 
 ## Fallback behaviour
 
 If a user invokes `neutral professional de` and the rewrite engages unfamiliar German patterns this draft does not yet cover:
 
-1. Apply the rules above and the universal §1 through §30 from SKILL.md.
+1. Apply the rules above and the universal §1 through §33 from SKILL.md.
 2. Apply the Divergence section as a guardrail (do not strip passive, do not break Komposita, do not flatten Nominalstil, do not import English sentence-length targets, and remember the dash rule inverts).
 3. If the text deals with a genre this preset has not been calibrated for (Behördensprache, juristische Texte, wissenschaftliche Publikationen), flag in the response that the preset is calibrated for technical-doc register and the user may want a different preset or sample.
 

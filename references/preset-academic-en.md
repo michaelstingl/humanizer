@@ -1,6 +1,6 @@
 # Voice preset: `academic` (English)
 
-Loaded by SKILL.md when the user requests "academic" or "academic en". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §30 in SKILL.md still apply unchanged; this preset only shifts register and voice.
+Loaded by SKILL.md when the user requests "academic" or "academic en". Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §33 in SKILL.md still apply unchanged; this preset only shifts register and voice.
 
 ## Voice mode
 

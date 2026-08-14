@@ -1,6 +1,6 @@
 # Voice preset: `neutral professional` (English)
 
-Loaded by SKILL.md when the user requests "neutral professional", "neutral professional en", or equivalent. Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §30 in SKILL.md still apply unchanged; this preset only shifts register and voice.
+Loaded by SKILL.md when the user requests "neutral professional", "neutral professional en", or equivalent. Apply this preset instead of PERSONALITY AND SOUL. The numbered patterns §1 through §33 in SKILL.md still apply unchanged; this preset only shifts register and voice.
 
 ## Voice mode
 
@@ -12,7 +12,7 @@ The rules below derive from convergent guidance across the Google developer docu
 
 ## Register-specific rules
 
-In addition to the numbered patterns §1 through §30. Each rule cites the style guide(s) it was drawn from; bracket codes resolve to URLs in the Sources block below. For non-native English writers: when in doubt between a formal-sounding word and a common one, the common word almost always wins in this register. Plain Language guidance applies more strictly here than in academic or marketing writing.
+In addition to the numbered patterns §1 through §33. Each rule cites the style guide(s) it was drawn from; bracket codes resolve to URLs in the Sources block below. For non-native English writers: when in doubt between a formal-sounding word and a common one, the common word almost always wins in this register. Plain Language guidance applies more strictly here than in academic or marketing writing.
 
 - **Active voice as default.** "The button can be clicked" → "Click the button." Passive is acceptable only when the agent is genuinely unknown or irrelevant. *(Convergent across [G], [MS], [Apple], [IBM], [GOV], [GL], [PL], [CMS], [MC].)*
 - **Present tense.** "The function will return..." → "The function returns..." Future tense ("will") is reserved for genuinely future events, not for describing current behaviour. *([G], [IBM].)*
