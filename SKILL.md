@@ -42,21 +42,19 @@ A sample outranks this skill's style rules, including the em dash rule in §14: 
 
 ### Option B: Named voice preset
 
-If the user names a preset, read the matching reference file in `references/` and apply the rules defined there. All numbered patterns §1 through §30 in this SKILL.md still apply unchanged; the preset only shifts register and voice.
+If the user names a preset, read the matching reference file in `references/` and apply the rules defined there. All numbered patterns §1 through §33 in this SKILL.md still apply unchanged; the preset only shifts register and voice.
 
 | Preset request                                       | Reference file                              |
 |------------------------------------------------------|---------------------------------------------|
 | "neutral professional" or "neutral professional en"  | `references/preset-neutral-professional-en.md` |
 | "neutral professional de" or "neutrales Deutsch"     | `references/preset-neutral-professional-de.md` (draft v0.3) |
-
-For German text, `scripts/de_typo_lint.py` can pre-sort the mechanical typography questions (dash glyph, quotation marks, apostrophe, spacing) so the prose pass spends its attention on judgement. Treat its output as hints to verify, never as a verdict: quotations, work titles, proper names and inline code legitimately keep a "wrong" glyph.
 | "academic" or "academic en"                          | `references/preset-academic-en.md`          |
 
-Each reference file contains the full preset definition: voice mode, language scope, register-specific rules, sources, and example transformation. The numbered patterns §1 through §30 in this SKILL.md apply on top of every preset; the reference files do not repeat them.
+For German text, `scripts/de_typo_lint.py` can pre-sort the mechanical typography questions (dash glyph, quotation marks, apostrophe, spacing) so the prose pass spends its attention on judgement. Treat its output as hints to verify, never as a verdict: quotations, work titles, proper names and inline code legitimately keep a "wrong" glyph.
+
+Each reference file contains the full preset definition: voice mode, language scope, register-specific rules, sources, and example transformation. The numbered patterns §1 through §33 in this SKILL.md apply on top of every preset; the reference files do not repeat them.
 
 **default** (no preset, no sample): PERSONALITY AND SOUL voice from this SKILL.md. Suits blog posts, essays, opinion pieces, journals, Substack-style writing, anywhere a human author's voice is part of the product.
-
-If the user requests an undefined preset, fall back to default and note the unrecognised name in the response so the user can correct it.
 
 ### How to invoke
 
