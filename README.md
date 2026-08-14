@@ -255,4 +255,5 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 
 ## License
 
-MIT
+MIT. Some material in this repository is adapted from Wikipedia and is
+therefore CC BY-SA 4.0; see [NOTICE](NOTICE) for the scope and attribution.
