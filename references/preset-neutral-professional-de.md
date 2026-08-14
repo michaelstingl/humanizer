@@ -25,7 +25,7 @@ These differences are firmly established. The English `neutral professional` rul
 - **Hedging via Konjunktiv is legitimate.** "Es wäre zu prüfen", "könnte ergänzt werden" are accepted formal-German constructions, not slop tells. Single Konjunktiv is fine; stacking ("könnte möglicherweise unter Umständen...") is still the tell.
 - **Address mode is Sie / impersonal.** Formal German uses "Sie" or impersonal "man" / "es ist zu beachten". The English "you" rule maps to "Sie", not to "du".
 - **Bandwurmsätze tolerate higher word counts.** Plain Language 15-20-word target does not transfer. German formal writing routinely uses 25-35-word sentences. The Hohenheimer Verständlichkeitsindex (HIX) is the correct target instead.
-- **The dash rule inverts.** SKILL.md treats the em dash (—) as an overuse tell to be reduced. In German the em dash is not merely overused, it is the wrong glyph: German sets the Gedankenstrich as a Halbgeviertstrich (–) with surrounding spaces. Every "—" in German prose is an English-typography import. *([WP-TYP], [GOL].)*
+- **The dash rule inverts.** SKILL.md treats the em dash (—) as an overuse tell to be reduced. In German the em dash is not merely overused, it is the wrong glyph: German sets the Gedankenstrich as a Halbgeviertstrich (–) with surrounding spaces. Every "—" in German prose is an English-typography import. §14 is scoped to English for exactly this reason, and its final scan looks for `—` only under this preset; see Typografie for the full resolution, including why a writing sample does not override it. *([WP-TYP], [GOL].)*
 - **Sentence-length variance: mechanism transfers, numbers do not.** That models produce flatter sentence-length distributions than humans is a property of the generation process, not of English. The published *values* (word bands, variance thresholds) were measured on English corpora and hang on English sentence-length norms. Take the mechanism, leave the number. See Rhythmus and Übertragbarkeit.
 
 ## Register-specific rules
@@ -101,6 +101,8 @@ Diese Regeln sind der wertvollste Teil des Presets, weil sie ohne Modell-Urteil 
 - **Keine englische Title-Case in Überschriften.** "Konfiguration Der Datenbank" ist aus dem Englischen kopiert; deutsche Überschriften folgen der normalen Groß-/Kleinschreibung. *([HDE].)*
 - **Standard-Aufzählungszeichen, keine Emojis und keine "•"-Ersatzzeichen vor Überschriften.** *([WP-DE], [KOR].)*
 - **Bis-Strich ist ebenfalls der Halbgeviertstrich, ohne Spatien.** "2024–2026", "10–15 Stunden". *([DIN-5008].)*
+
+**Verhältnis zu §14 und zu Schreibproben.** §14 in SKILL.md verbietet Geviert- *und* Halbgeviertstrich und lässt seine Schlusskontrolle auf beide Zeichen laufen; das ist für Englisch geschrieben, wo der Gedankenstrich eine Stilfrage ist. Unter diesem Preset gilt: die Schlusskontrolle sucht nur nach `—`, der Halbgeviertstrich bleibt stehen. Eine Schreibprobe ändert daran nichts. Sie bestimmt Rhythmus, Register und Wortwahl, nicht die Glyphen: enthält die Probe deutsche Sätze mit `—`, gibt sie einen Fehler wieder und keine Stimme. Typografie folgt der Norm, nicht der Probe. *(Abgrenzung zu §14 und zur Sample-Regel aus v2.9.0; belegt über [WP-TYP], [Duden-GS], [DIN-5008].)*
 
 ## Struktur und Formatierung
 

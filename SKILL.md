@@ -198,7 +198,7 @@ When voice is appropriate, avoid uniform sentence structures, bloodless neutrali
 
 ### 14. Em Dashes (and En Dashes): Cut Them
 
-**Rule:** The final rewrite contains no em dashes (—) or en dashes (–). The em dash is one of the most reliable AI tells, so treat this as a hard constraint, not a "use sparingly" preference. Replace each one, in rough order of preference: a period (start a new sentence), a comma (a tight aside), a colon (introducing an explanation), parentheses (a true aside), or restructure the sentence. Also catch spaced em dashes (` — `) and double hyphens (` -- `) used the same way.
+**Rule (English text):** The final rewrite contains no em dashes (—) or en dashes (–). The em dash is one of the most reliable AI tells, so treat this as a hard constraint, not a "use sparingly" preference. Replace each one, in rough order of preference: a period (start a new sentence), a comma (a tight aside), a colon (introducing an explanation), parentheses (a true aside), or restructure the sentence. Also catch spaced em dashes (` — `) and double hyphens (` -- `) used the same way.
 **Before:**
 > The term is primarily promoted by Dutch institutions—not by the people themselves. You don't say "Netherlands, Europe" as an address—yet this mislabeling continues—even in official documents.
 **After:**
@@ -208,7 +208,10 @@ When voice is appropriate, avoid uniform sentence structures, bloodless neutrali
 **After:**
 > The new policy, announced without warning, affects thousands of workers. The changes, long overdue according to critics, will take effect immediately.
 
-Before returning the final rewrite, scan it for `—` and `–`. Any hit means the draft isn't done. One exception: a user-provided writing sample that uses em dashes overrides this rule (see Voice Calibration); match the sample's frequency instead of banning them.
+Before returning the final rewrite, scan it for `—` and `–`. Any hit means the draft isn't done. Two exceptions:
+
+- **A user-provided writing sample that uses em dashes** overrides this rule (see Voice Calibration); match the sample's frequency instead of banning them.
+- **Languages whose typography requires a dash.** This rule is written for English, where the em dash is a style preference. In German the en dash with surrounding spaces *is* the Gedankenstrich, the correct glyph, and the em dash is the English import to remove. Under a German preset, scan for `—` alone and leave `–` in place. Other languages set their own norm; when a preset states one, the preset's typography wins here. A writing sample does not override this: a sample governs rhythm, register and vocabulary, not glyphs, and a sample full of `—` in German is reproducing an error rather than expressing a voice.
 
 ### 15. Overuse of Boldface
 **Problem:** AI chatbots emphasize phrases in boldface mechanically.
